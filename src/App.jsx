@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserPage from "./pages/UserPage";
 import ActiveTodos from "./pages/ActiveTodos";
+import CompletedTodos from "./pages/CompletedTodos";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
 
           <Route path="/active" element={<ActiveTodos />} />
+          <Route path="/completed" element={<CompletedTodos />} />
 
           <Route path="/users" element={<UserPage />} />
         </Routes>
