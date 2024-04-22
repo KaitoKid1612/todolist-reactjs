@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRef } from "react";
 import { useState } from "react";
 
@@ -8,6 +9,17 @@ const ActiveTodos = () => {
   const saveTodo = () => {
     setTodos([...todos, title.current.value]);
     title.current.value = "";
+  };
+
+  // Update localStorage whenever the todos change
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  const deleteTodo = (index) => {
+    const newTodos = [...todos];
+    newTodos.splice(index, 1);
+    setTodos(newTodos);
   };
 
   return (
@@ -37,14 +49,14 @@ const ActiveTodos = () => {
                     <div className="font-medium" key={index}>
                       {todo}
                     </div>
-                    <div className="font-medium" key={index}>
-                      {todo}
-                    </div>
                   </div>
                   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                    Mark Completed
+                    Mark Active
                   </button>
-                  <button className="bg-red-500 hover:bg-red-700 ml-2 text-white font-bold py-2 px-4 rounded-full">
+                  <button
+                    onClick={deleteTodo}
+                    className="bg-red-500 hover:bg-red-700 ml-2 text-white font-bold py-2 px-4 rounded-full"
+                  >
                     Delete
                   </button>
                 </div>
